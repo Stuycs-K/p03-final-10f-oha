@@ -2,27 +2,28 @@
 
 ## Group Members:
 
-names here.(CHANGE THIS!!!!!)
-       
+Adam Oh
+
 # Intentions:
 
-A statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
-    
+The goal is to make a simple text editor. The functions I aim to for sure implement is to open text files, add and delete characters, move cursor with arrows, and close and saving to the file.
+
 # Intended usage:
 
-A description as to how the project will be used (describe the user interface). (CHANGE THIS!!!!!)
-  
+The intended use of the program is to be able to edit text documents within the terminal, similar to vim.
+
 # Technical Details:
 
-(CHANGE THIS!!!!!)
+It will allocate memory to store text buffers.
 
-A description of your technical design. This should include: 
-   
-How you will be using the topics covered in class in the project.
-     
-How you are breaking down the project and who is responsible for which parts.
-  
-    
+It will work with files to open, edit, save and close the file you are editing.
+
+It will use signals to detect when a command is being used, something like ctrl + s to save or ctrl + q to quit, and will fork so that the child can execute a command prompted with a signal.
+
 # Intended pacing:
 
-A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+Day 1-2: basic opening and closing files and scrolling and moving cursor
+Day 3-4: editing functions (deletion and inserting)
+Day 5: File saving
+
+Week 2: add more functions with signals, polish and debug
