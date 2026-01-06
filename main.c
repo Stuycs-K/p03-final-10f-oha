@@ -5,5 +5,7 @@ int main(int argc, char *argv[]){
   if(openfile < 0){
     err();
   )
+  struct stat
+  stat(filename, )
   int readfile = read(openfile, )
 }

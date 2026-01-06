@@ -8,5 +8,6 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-int err(); 
+#include <sys/stat.h>
+int err();
 #endif
