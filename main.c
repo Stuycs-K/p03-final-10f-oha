@@ -13,38 +13,18 @@ int main(int argc, char *argv[]){
   if (readfile < 0){
     err();
   }
-  printf("%s",buff);
   initscr();
-  clear();
-  scrollok(stdscr, TRUE);
-
-  int row = 0;
-  int col = 0;
-  int maxy, maxx;
-  getmaxyx(stdscr, maxy, maxx);
-
-  for (int i = 0; i < statbuff->st_size; i++){
-    char n = buff[i];
-
-    if(n == '\n'){
-      row++;
-      col = 0;
-    }
-    else{
-      mvaddch(row, col, n);
-      col++;
-      if(col >= maxx){
-        row++;
-        col = 0;
-      }
-    }
-
-    if(row>=maxy){
-      scroll(stdscr);
-      row = maxy - 1;
-    }
+  start(buff, statbuff);
+  keypad(stdscr, TRUE);
+  while(1){
+    int x = 0;
+    int y = 0;
+    getyx(stdscr, y, x);
+    int maxx = 0;
+    int maxy = 0;
+    getmaxyx(stdscr, maxx, maxy);
+    int ch = getch();
+    movecursor(x,y,maxx,maxy,ch);
   }
-  refresh();
-  getch();
   endwin();
 }

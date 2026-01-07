@@ -10,4 +10,6 @@
 #include <unistd.h>
 #include <sys/stat.h>
 int err();
+int start(char * buff, struct stat *statbuff);
+int movecursor(int x, int y, int maxx, int maxy, int ch);
 #endif
