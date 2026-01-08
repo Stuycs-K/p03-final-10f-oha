@@ -37,9 +37,9 @@ int start(char * buff, struct stat *statbuff){
   refresh();
 }
 
-int movecursor(int x, int y, int maxx, int maxy, int ch){
+int movecursor(int x, int y, char ** lines, int maxy, int ch){
   if (ch == KEY_UP){
-    if (y > 0 && mvinch(y, )){
+    if (y > 0){
       move(y - 1, x);
     }
   }else if (ch == KEY_DOWN){
@@ -47,7 +47,7 @@ int movecursor(int x, int y, int maxx, int maxy, int ch){
       move(y + 1, x);
     }
   }else if (ch == KEY_RIGHT){
-    if (x < maxx){
+    if (x < strlen(lines[y])){
       move(y, x + 1);
     }
   }else if (ch == KEY_LEFT){
@@ -58,3 +58,18 @@ int movecursor(int x, int y, int maxx, int maxy, int ch){
   refresh();
 }
 
+int quit(char * buff, struct stat *statbuff){
+  clear();
+  printw("Are you sure you want to quit (Y/N)");
+  refresh();
+  while(1){
+    int ch = getch();
+    if(ch == 'y'){
+      endwin();
+      exit(0);
+    }else if (ch == 'n'){
+      start(buff, statbuff);
+      break;
+    }
+  }
+}

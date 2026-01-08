@@ -13,5 +13,6 @@
 #include <signal.h>
 int err();
 int start(char * buff, struct stat *statbuff);
-int movecursor(int x, int y, int maxx, int maxy, int ch);
+int movecursor(int x, int y, char **lines, int maxy, int ch);
+int quit(char * buff, struct stat *statbuff);
 #endif
