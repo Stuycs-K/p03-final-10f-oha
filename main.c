@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
   }
   lines = realloc(lines, size * sizeof(char*));
   lines[size - 1] = NULL;
-  size--;
+  size -= 2;
   initscr();
   raw();
   noecho();
