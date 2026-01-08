@@ -20,7 +20,8 @@ int main(int argc, char *argv[]){
   }
   signal(SIGQUIT, sighandler);
   char ** lines = malloc(sizeof(char*));
-  char *curr = buff;
+  char *curr = malloc(strlen(buff) + 1);
+  strcpy(curr, buff);
   char * token = calloc(1, sizeof(buff) + 1);
   int size = 1;
   token = strsep(&curr, "\n");
