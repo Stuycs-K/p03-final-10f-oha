@@ -1,19 +1,19 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/QfAIDTGi)
-# PROJECT NAME HERE (CHANGE THIS!!!!!)
- 
-### GROUP NAME HERE (CHANGE THIS!!!!!)
+# File Editor
 
-Group Members Here (CHANGE THIS!!!!!)
-       
+### OH!
+
+Adam Oh
+
 ### Project Description:
 
-Explain what is this project. (CHANGE THIS!!!!!)
-  
+A simple, working file editor in the terminal. It will open files, allow you to edit it, then let's you save and close the file in a convenient way.
+
 ### Instructions:
 
-How does the user install/compile/run the program. (CHANGE THIS!!!!!)
-How does the user interact with this program? (CHANGE THIS!!!!!)
 
-### Resources/ References:
+Enter make run ARGS=[Insert file name] in the terminal
+Edit the file however you like
+Then, ctrl + \ to exit
 
-list here(CHANGE THIS!!!!!)
+### Resources/ References
