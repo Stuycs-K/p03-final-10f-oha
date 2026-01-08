@@ -2,12 +2,14 @@
 
 This document must be updated daily every time you finish a work session.
 
-## Dave Kim  (CHANGE THIS!!!!! Also change the file name!)
+## Adam Oh
 
 ### 2026-01-06 - Brief description
 Spent class time making the makefile and learning the works of ncurses
 Spent about 10 minutes finishing the file reading and debugging
 Spent about an hour and a half debugging and figuring out how to get things printed on the screen.
 
-### 2024-01-03 - Brief description
-Expanded description including how much time was spent on task.
+### 2026-01-07
+Spent class time getting the cursor moving to work
+Worked on quitting the file with quit confirmation to work for and hour and a half. Had to learn how to use ncurses to detect ctrl \ and figure out disabling the signal itself. 
+In progress of making so the cursor cannot scroll past the ends of the lines.

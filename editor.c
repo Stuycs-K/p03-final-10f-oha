@@ -39,7 +39,7 @@ int start(char * buff, struct stat *statbuff){
 
 int movecursor(int x, int y, int maxx, int maxy, int ch){
   if (ch == KEY_UP){
-    if (y > 0){
+    if (y > 0 && mvinch(y, )){
       move(y - 1, x);
     }
   }else if (ch == KEY_DOWN){

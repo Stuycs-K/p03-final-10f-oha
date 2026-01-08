@@ -19,6 +19,21 @@ int main(int argc, char *argv[]){
     err();
   }
   signal(SIGQUIT, sighandler);
+  char ** lines = malloc(sizeof(char*));
+  char *curr = buff;
+  char * token = calloc(1, sizeof(buff) + 1);
+  int size = 2;
+  token = strsep(&line, "\n");
+  while(token != NULL){
+    lines = realloc(lines, size * sizeof(char*));
+    lines[size - 1] = token;
+    token = strsep(&line, " ");
+    size++;
+  }
+  argary[size - 1] = NULL;
+  while((token = strsep(&curr)) != NULL){
+
+  }
   initscr();
   raw();
   noecho();
