@@ -55,4 +55,6 @@ int movecursor(int x, int y, int maxx, int maxy, int ch){
       move(y, x - 1);
     }
   }
+  refresh();
 }
+
