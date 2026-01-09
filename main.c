@@ -34,6 +34,10 @@ int main(int argc, char *argv[]){
   lines = realloc(lines, size * sizeof(char*));
   lines[size - 1] = NULL;
   size--;
+  /*printf("%d\n",size);
+  for(int i = 0; i < size; i++){
+    printf("%ld: %s\n",strlen(lines[i]), lines[i]);
+  }*/
   initscr();
   raw();
   noecho();
