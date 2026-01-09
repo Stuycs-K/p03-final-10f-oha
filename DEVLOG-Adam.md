@@ -13,3 +13,8 @@ Spent about an hour and a half debugging and figuring out how to get things prin
 Spent class time getting the cursor moving to work
 Worked on quitting the file with quit confirmation to work for and hour and a half. Had to learn how to use ncurses to detect ctrl \ and figure out disabling the signal itself. 
 In progress of making so the cursor cannot scroll past the ends of the lines.
+
+### 2026-01-08
+Spent class time making cursor not able to go off lines
+Encountered bug with not being able to move past the bottom line or else it returns a segfault
+Still can't figure out how to fix bug but will carry on tomorrow ignoring it for now and saving debugging for the weekend
