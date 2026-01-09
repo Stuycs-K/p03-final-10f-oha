@@ -39,19 +39,25 @@ int start(char * buff, struct stat *statbuff){
 
 int movecursor(int x, int y, char ** lines, int maxy, int ch){
   if (ch == KEY_UP){
+    if (y == 0){
+      return 0;
+    }
     if (y > 0){
-      if(strlen(lines[y - 1]) - 1> x){
+      if(strlen(lines[y - 1]) > x){
         move(y - 1, x);
       }
     }
   }else if (ch == KEY_DOWN){
+    if(y == maxy){
+      return 0;
+    }
     if (y < maxy){
-      if(strlen(lines[y + 1]) - 1 > x){
+      if(strlen(lines[y + 1]) > x){
         move(y + 1, x);
       }
     }
   }else if (ch == KEY_RIGHT){
-    if (x < strlen(lines[y]) - 2){
+    if (x < strlen(lines[y]) - 1){
       move(y, x + 1);
     }
   }else if (ch == KEY_LEFT){
