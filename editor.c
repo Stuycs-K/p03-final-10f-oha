@@ -4,7 +4,7 @@ int err(){
   printf("%s\n", strerror(errno));
 }
 
-int start(char * buff, struct stat *statbuff){
+int start(char * buff, int size){
   clear();
   scrollok(stdscr, TRUE);
 
@@ -13,7 +13,7 @@ int start(char * buff, struct stat *statbuff){
   int maxy, maxx;
   getmaxyx(stdscr, maxy, maxx);
 
-  for (int i = 0; i < statbuff->st_size; i++){
+  for (int i = 0; i < size; i++){
     char n = buff[i];
 
     if(n == '\n'){
@@ -40,28 +40,28 @@ int start(char * buff, struct stat *statbuff){
 int movecursor(int x, int y, char ** lines, int maxy, int ch){
   if (ch == KEY_UP){
     if (y > 0){
-      if(strlen(lines[y - 1]) - 1 > x){
+      if(strlen(lines[y - 1]) > x){
         move(y - 1, x);
       }
     }
   }else if (ch == KEY_DOWN){
     if (y == maxy - 2){
-      if(strlen(lines[y + 1]) > x){
+      if(strlen(lines[y + 1]) + 1> x){
         move(y + 1, x);
       }
     }
     else if (y < maxy - 1){
-      if(strlen(lines[y + 1]) - 1 > x){
+      if(strlen(lines[y + 1]) > x){
         move(y + 1, x);
       }
     }
   }else if (ch == KEY_RIGHT){
     if (y == maxy - 1){
-      if (x < strlen(lines[y]) - 1){
+      if (x < strlen(lines[y])){
         move(y, x + 1);
       }
     }
-    else if (x < strlen(lines[y]) - 2){
+    else if (x < strlen(lines[y]) - 1){
       move(y, x + 1);
     }
   }else if (ch == KEY_LEFT){
@@ -72,7 +72,7 @@ int movecursor(int x, int y, char ** lines, int maxy, int ch){
   refresh();
 }
 
-int quit(char * buff, struct stat *statbuff){
+int quit(char * buff, int size){
   clear();
   printw("Are you sure you want to quit (Y/N)");
   refresh();
@@ -82,8 +82,39 @@ int quit(char * buff, struct stat *statbuff){
       endwin();
       exit(0);
     }else if (ch == 'n'){
-      start(buff, statbuff);
+      start(buff, size);
       break;
     }
   }
+}
+
+char * insert(char * line, int i, char ch){
+  char * s1 = malloc(strlen(line) + 2);
+  strncpy(s1, line, i);
+  s1[i] = ch;
+  for (int k = i + 1; k < strlen(line) + 1; k++){
+    s1[k] = line[k - 1];
+  }
+  return s1;
+}
+
+char * getnewbuff(char ** lines, int size){
+  int outsize = 0;
+  for(int i = 0; i < size; i++){
+    for(int k = 0; k < strlen(lines[i]); k++){
+      outsize++;
+    }
+  }
+  char * out = malloc(outsize + size + 1); 
+  int curr = 0;
+  for(int i = 0; i < size; i++){
+    for (int k = 0; k < strlen(lines[i]); k++){
+      out[curr] = lines[i][k];
+      if(k == strlen(lines[i]) - 1){
+        out[curr + 1] = '\n';
+        curr++;
+      }
+    }
+  }
+  return out;
 }

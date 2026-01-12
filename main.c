@@ -40,15 +40,18 @@ int main(int argc, char *argv[]){
   lines[size - 1] = NULL;
   size--;
 
+  char * newbuff = malloc(sizeof(buff));
+  int newbuffsize = statbuff->st_size;
+  strcpy(newbuff, buff);
   initscr();
   raw();
   noecho();
-  start(buff, statbuff);
+  start(buff, statbuff->st_size);
   keypad(stdscr, TRUE);
   while(1){
     int ch = getch();
     if(ch == 28){
-      quit(buff, statbuff);
+      quit(newbuff, newbuffsize);
     }
     int x = 0;
     int y = 0;
@@ -56,8 +59,13 @@ int main(int argc, char *argv[]){
     int maxx = 0;
     int maxy = 0;
     getmaxyx(stdscr, maxx, maxy);
+    if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')){
+      lines[y] = insert(lines[y], x, ch); 
+      newbuff == getnewbuff(lines, size);
+      newbuffsize++;
+      start(newbuff, newbuffsize);
+    }
     movecursor(x,y,lines,size,ch);
-
   }
   endwin();
 }

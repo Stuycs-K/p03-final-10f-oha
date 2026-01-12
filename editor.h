@@ -12,7 +12,9 @@
 #include <stdlib.h>
 #include <signal.h>
 int err();
-int start(char * buff, struct stat *statbuff);
+int start(char * buff, int size);
 int movecursor(int x, int y, char **lines, int maxy, int ch);
-int quit(char * buff, struct stat *statbuff);
+int quit(char * buff, int size);
+char * insert(char * line, int i, char ch);
+char * getnewbuff(char ** lines, int size);
 #endif
