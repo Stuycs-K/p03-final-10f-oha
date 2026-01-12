@@ -90,11 +90,17 @@ int quit(char * buff, int size){
 
 char * insert(char * line, int i, char ch){
   char * s1 = malloc(strlen(line) + 2);
-  strncpy(s1, line, i);
-  s1[i] = ch;
-  for (int k = i + 1; k < strlen(line) + 1; k++){
-    s1[k] = line[k - 1];
+  for (int k = 0; k < strlen(line) + 1; k++){
+    if(k < i){
+      s1[k] = line[k];
+    }
+    else if(k == i){
+      s1[i] = ch;
+    }else{
+      s1[k] = line[k - 1];
+    }
   }
+  s1[strlen(line) + 1] = 0;
   return s1;
 }
 
@@ -105,16 +111,18 @@ char * getnewbuff(char ** lines, int size){
       outsize++;
     }
   }
-  char * out = malloc(outsize + size + 1); 
+  char * out = malloc(outsize + size + 1);
   int curr = 0;
   for(int i = 0; i < size; i++){
     for (int k = 0; k < strlen(lines[i]); k++){
       out[curr] = lines[i][k];
+      curr++;
       if(k == strlen(lines[i]) - 1){
         out[curr + 1] = '\n';
         curr++;
       }
     }
   }
+  out[outsize + size + 1] = 0;
   return out;
 }

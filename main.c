@@ -26,6 +26,8 @@ int main(int argc, char *argv[]){
   char ** lines = malloc(sizeof(char*));
   char *curr = malloc(strlen(buff) + 1);
   strcpy(curr, buff);
+  printf("%s\n", curr);
+  printf("\n");
   char * token = calloc(1, sizeof(buff) + 1);
   int size = 1;
   token = strsep(&curr, "\n");
@@ -40,10 +42,19 @@ int main(int argc, char *argv[]){
   lines[size - 1] = NULL;
   size--;
 
+  printf("%s\n",lines[0]);
+  printf("\n");
+
+
   char * newbuff = malloc(sizeof(buff));
   int newbuffsize = statbuff->st_size;
   strcpy(newbuff, buff);
-  initscr();
+
+  printf("%s\n", buff);
+  printf("\n");
+  printf("%s\n",newbuff);
+  printf("\n");
+  /*initscr();
   raw();
   noecho();
   start(buff, statbuff->st_size);
@@ -60,12 +71,16 @@ int main(int argc, char *argv[]){
     int maxy = 0;
     getmaxyx(stdscr, maxx, maxy);
     if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')){
-      lines[y] = insert(lines[y], x, ch); 
+      lines[y] = insert(lines[y], x, ch);
       newbuff == getnewbuff(lines, size);
       newbuffsize++;
       start(newbuff, newbuffsize);
     }
     movecursor(x,y,lines,size,ch);
   }
-  endwin();
+  endwin();*/
+  printf("%s\n", lines[0]);
+  printf("\n");
+  lines[0] = insert(lines[0], 1, 'n');
+  printf("%s\n", lines[0]);
 }
