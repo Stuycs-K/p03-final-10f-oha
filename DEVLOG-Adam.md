@@ -23,3 +23,4 @@ Still can't figure out how to fix bug but will carry on tomorrow ignoring it for
 Got the bug from the previous day to be fixed
 
 ### 2026-01-11
+Started with inserting and deleting characters still bugged
