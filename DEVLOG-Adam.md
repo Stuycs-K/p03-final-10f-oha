@@ -18,3 +18,8 @@ In progress of making so the cursor cannot scroll past the ends of the lines.
 Spent class time making cursor not able to go off lines
 Encountered bug with not being able to move past the bottom line or else it returns a segfault
 Still can't figure out how to fix bug but will carry on tomorrow ignoring it for now and saving debugging for the weekend
+
+### 2026-01-09
+Got the bug from the previous day to be fixed
+
+### 2026-01-11
