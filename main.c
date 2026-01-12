@@ -10,15 +10,19 @@ int main(int argc, char *argv[]){
   if(openfile < 0){
     err();
   }
+
   struct stat *statbuff = malloc(sizeof(struct stat));
   stat(filename, statbuff);
+
   char * buff = malloc(statbuff->st_size);
   int readfile = read(openfile, buff, statbuff->st_size);
   buff[readfile] = '\0';
   if (readfile < 0){
     err();
   }
+
   signal(SIGQUIT, sighandler);
+
   char ** lines = malloc(sizeof(char*));
   char *curr = malloc(strlen(buff) + 1);
   strcpy(curr, buff);
@@ -31,20 +35,19 @@ int main(int argc, char *argv[]){
     token = strsep(&curr, "\n");
     size++;
   }
+
   lines = realloc(lines, size * sizeof(char*));
   lines[size - 1] = NULL;
   size--;
-  /*printf("%d\n",size);
-  for(int i = 0; i < size; i++){
-    printf("%ld: %s\n",strlen(lines[i]), lines[i]);
-  }*/
+
   initscr();
   raw();
   noecho();
   start(buff, statbuff);
   keypad(stdscr, TRUE);
   while(1){
-    if(getch() == 28){
+    int ch = getch();
+    if(ch == 28){
       quit(buff, statbuff);
     }
     int x = 0;
@@ -53,7 +56,6 @@ int main(int argc, char *argv[]){
     int maxx = 0;
     int maxy = 0;
     getmaxyx(stdscr, maxx, maxy);
-    int ch = getch();
     movecursor(x,y,lines,size,ch);
 
   }
