@@ -72,13 +72,16 @@ int movecursor(int x, int y, char ** lines, int maxy, int ch){
   refresh();
 }
 
-int quit(char * buff, int size){
+int quit(char * buff, int size, int fd, char * filename){
   clear();
   printw("Are you sure you want to quit (Y/N)");
   refresh();
   while(1){
     int ch = getch();
     if(ch == 'y'){
+      close(fd);
+      fd = open(filename, O_WRONLY | O_TRUNC, 0666);
+      write(fd, buff, size);
       endwin();
       exit(0);
     }else if (ch == 'n'){
@@ -104,7 +107,7 @@ char * insert(char * line, int i, char ch){
   return s1;
 }
 
-char * delete(char * line, int i){
+char * deletech(char * line, int i){
   char * s1 = malloc(strlen(line));
   for (int k = 0; k < strlen(line) - 1; k++){
     if(k < i){

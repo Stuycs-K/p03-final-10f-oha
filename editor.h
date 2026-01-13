@@ -14,8 +14,8 @@
 int err();
 int start(char * buff, int size);
 int movecursor(int x, int y, char **lines, int maxy, int ch);
-int quit(char * buff, int size);
+int quit(char * buff, int size, int fd, char * filename);
 char * insert(char * line, int i, char ch);
 char * getnewbuff(char ** lines, int size, int buffsize);
-char * delete(char * line, int i);
+char * deletech(char * line, int i);
 #endif

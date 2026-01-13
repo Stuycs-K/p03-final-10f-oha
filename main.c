@@ -14,10 +14,10 @@ int main(int argc, char *argv[]){
   struct stat *statbuff = malloc(sizeof(struct stat));
   stat(filename, statbuff);
 
-  char * buff = malloc(statbuff->st_size);
-  int readfile = read(openfile, buff, statbuff->st_size);
-  buff[readfile] = '\0';
-  if (readfile < 0){
+  char * buff = malloc(statbuff->st_size + 1);
+  int buffsize = read(openfile, buff, statbuff->st_size);
+  buff[buffsize] = '\0';
+  if (buffsize < 0){
     err();
   }
 
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
   int newbuffsize = strlen(buff);
   strcpy(newbuff, buff);
 
-
+  
   initscr();
   raw();
   noecho();
@@ -53,7 +53,11 @@ int main(int argc, char *argv[]){
   while(1){
     int ch = getch();
     if(ch == 28){
-      quit(newbuff, newbuffsize);
+      quit(buff, buffsize, openfile, filename);
+    }else if (ch == 19){
+      buff = realloc(buff, newbuffsize);
+      buffsize = newbuffsize;
+      strcpy(buff, newbuff);
     }
     int x = 0;
     int y = 0;
@@ -68,7 +72,7 @@ int main(int argc, char *argv[]){
       start(newbuff, newbuffsize);
       move(y, x + 1);
     }else if (ch == KEY_BACKSPACE){
-      lines[y] = delete(lines[y], x - 1);
+      lines[y] = deletech(lines[y], x - 1);
       newbuff = getnewbuff(lines, size, newbuffsize);
       newbuffsize--;
       start(newbuff, newbuffsize);
