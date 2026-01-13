@@ -104,6 +104,20 @@ char * insert(char * line, int i, char ch){
   return s1;
 }
 
+char * delete(char * line, int i){
+  char * s1 = malloc(strlen(line));
+  for (int k = 0; k < strlen(line) - 1; k++){
+    if(k < i){
+      s1[k] = line[k];
+    }
+    else{
+      s1[k] = line[k  + 1];
+    }
+  }
+  s1[strlen(line) + 1] = 0;
+  return s1;
+}
+
 char * getnewbuff(char ** lines, int size, int buffsize){
   char * out = malloc(buffsize + 1);
   int curr = 0;

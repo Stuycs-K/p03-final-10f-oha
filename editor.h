@@ -17,4 +17,5 @@ int movecursor(int x, int y, char **lines, int maxy, int ch);
 int quit(char * buff, int size);
 char * insert(char * line, int i, char ch);
 char * getnewbuff(char ** lines, int size, int buffsize);
+char * delete(char * line, int i);
 #endif

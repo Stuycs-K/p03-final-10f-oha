@@ -67,6 +67,12 @@ int main(int argc, char *argv[]){
       newbuffsize++;
       start(newbuff, newbuffsize);
       move(y, x + 1);
+    }else if (ch == KEY_BACKSPACE){
+      lines[y] = delete(lines[y], x - 1);
+      newbuff = getnewbuff(lines, size, newbuffsize);
+      newbuffsize--;
+      start(newbuff, newbuffsize);
+      move(y, x - 1);
     }
     movecursor(x,y,lines,size,ch);
   }
