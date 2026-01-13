@@ -104,25 +104,20 @@ char * insert(char * line, int i, char ch){
   return s1;
 }
 
-char * getnewbuff(char ** lines, int size){
-  int outsize = 0;
-  for(int i = 0; i < size; i++){
-    for(int k = 0; k < strlen(lines[i]); k++){
-      outsize++;
-    }
-  }
-  char * out = malloc(outsize + size + 1);
+char * getnewbuff(char ** lines, int size, int buffsize){
+  char * out = malloc(buffsize + 1);
   int curr = 0;
   for(int i = 0; i < size; i++){
-    for (int k = 0; k < strlen(lines[i]); k++){
+    int len = strlen(lines[i]);
+    for (int k = 0; k < len; k++){
       out[curr] = lines[i][k];
       curr++;
-      if(k == strlen(lines[i]) - 1){
-        out[curr + 1] = '\n';
+    }
+    if(i < size - 1){
+        out[curr] = '\n';
         curr++;
-      }
     }
   }
-  out[outsize + size + 1] = 0;
+  out[curr] = '\0';
   return out;
 }

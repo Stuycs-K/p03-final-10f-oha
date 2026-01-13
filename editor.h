@@ -16,5 +16,5 @@ int start(char * buff, int size);
 int movecursor(int x, int y, char **lines, int maxy, int ch);
 int quit(char * buff, int size);
 char * insert(char * line, int i, char ch);
-char * getnewbuff(char ** lines, int size);
+char * getnewbuff(char ** lines, int size, int buffsize);
 #endif
