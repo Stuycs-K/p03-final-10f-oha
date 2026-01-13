@@ -138,3 +138,30 @@ char * getnewbuff(char ** lines, int size, int buffsize){
   out[curr] = '\0';
   return out;
 }
+
+char ** enterkey(char ** lines, int y, int x, int size){
+  char ** out = malloc((size + 2) * sizeof(char *));
+  for (int i = 0; i < size + 1; i++){
+    if (i < y){
+      out[i] = lines[i];
+    }else if (i == y){
+      char * line1 = malloc(strlen(lines[i]));
+      char * line2 = malloc(strlen(lines[i]));
+      for (int k = 0; k < strlen(lines[i]); k++){
+        if(k < x){
+          line1[k] = lines[i][k];
+        }else{
+          line2[k - x] = lines[i][k];
+        }
+      }
+      line1[x] = '\0';
+      line2[strlen(lines[i]) - x] = '\0';
+      out[i] = line1;
+      out[i + 1] = line2;
+    }else{
+      out[i + 1] = lines[i];
+    }
+  }
+  out[size + 1] = NULL;
+  return out;
+}

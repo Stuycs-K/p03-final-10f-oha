@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
   int newbuffsize = strlen(buff);
   strcpy(newbuff, buff);
 
-  
+
   initscr();
   raw();
   noecho();
@@ -67,16 +67,23 @@ int main(int argc, char *argv[]){
     getmaxyx(stdscr, maxx, maxy);
     if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == ' ' || ch == '\t'){
       lines[y] = insert(lines[y], x, ch);
-      newbuff = getnewbuff(lines, size, newbuffsize);
       newbuffsize++;
+      newbuff = getnewbuff(lines, size, newbuffsize);
       start(newbuff, newbuffsize);
       move(y, x + 1);
     }else if (ch == KEY_BACKSPACE){
       lines[y] = deletech(lines[y], x - 1);
-      newbuff = getnewbuff(lines, size, newbuffsize);
       newbuffsize--;
+      newbuff = getnewbuff(lines, size, newbuffsize);
       start(newbuff, newbuffsize);
       move(y, x - 1);
+    }else if (ch == KEY_ENTER){
+      lines = enterkey(lines, y, x, size);
+      size++;
+      newbuff = getnewbuff(lines, size, newbuffsize);
+      newbuffsize++;
+      start(newbuff, newbuffsize);
+      move(y + 1, 0);
     }
     movecursor(x,y,lines,size,ch);
   }
