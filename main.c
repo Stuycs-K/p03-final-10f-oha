@@ -66,6 +66,7 @@ int main(int argc, char *argv[]){
       newbuff = getnewbuff(lines, size, newbuffsize);
       newbuffsize++;
       start(newbuff, newbuffsize);
+      move(y, x + 1);
     }
     movecursor(x,y,lines,size,ch);
   }
