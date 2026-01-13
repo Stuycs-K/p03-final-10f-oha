@@ -61,7 +61,7 @@ int main(int argc, char *argv[]){
     int maxx = 0;
     int maxy = 0;
     getmaxyx(stdscr, maxx, maxy);
-    if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')){
+    if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == ' ' || ch == '\t'){
       lines[y] = insert(lines[y], x, ch);
       newbuff = getnewbuff(lines, size, newbuffsize);
       newbuffsize++;
