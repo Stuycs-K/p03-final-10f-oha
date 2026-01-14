@@ -77,7 +77,7 @@ int main(int argc, char *argv[]){
       newbuff = getnewbuff(lines, size, newbuffsize);
       start(newbuff, newbuffsize);
       move(y, x - 1);
-    }else if (ch == KEY_ENTER){
+    }else if (ch == KEY_ENTER || ch == '\n' || ch == '\r'){
       lines = enterkey(lines, y, x, size);
       size++;
       newbuff = getnewbuff(lines, size, newbuffsize);
