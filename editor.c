@@ -45,23 +45,30 @@ int start(char * buff, int size){
 int movecursor(int x, int y, char ** lines, int maxy, int ch){
   if (ch == KEY_UP){
     if (y > 0){
-      if(strlen(lines[y - 1]) > x){
+      if (strlen(lines[y - 1]) == 1){
+        if (2 > x){
+          move(y - 1, x);
+        }
+      }
+      else if(strlen(lines[y - 1]) > x){
         move(y - 1, x);
       }
     }
   }else if (ch == KEY_DOWN){
-    if (y == maxy - 2){
-      if(strlen(lines[y + 1]) + 1> x){
-        move(y + 1, x);
+    if (y < maxy - 1){
+      if (strlen(lines[y + 1]) == 1){
+        if(strlen(lines[y + 1]) + 1> x){
+          move(y + 1, x);
+        }
       }
-    }
-    else if (y < maxy - 1){
-      if(strlen(lines[y + 1]) > x){
-        move(y + 1, x);
+      else if (y < maxy - 1){
+        if(strlen(lines[y + 1]) > x){
+          move(y + 1, x);
+        }
       }
     }
   }else if (ch == KEY_RIGHT){
-    if (y == maxy - 1){
+    if (strlen(lines[y]) == 1){
       if (x < strlen(lines[y])){
         move(y, x + 1);
       }
