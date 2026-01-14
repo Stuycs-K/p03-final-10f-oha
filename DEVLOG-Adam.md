@@ -29,3 +29,8 @@ Started with inserting and deleting characters still bugged
 Implemented inserting and deleting and having them fulling function with no bugs
 Implemented saving and closing with and without saving
 Next steps are to implement enter key, add some indicator if you saved or not, and then maybe implement multiple windows using forking and exec
+
+### 2026-01-13
+Implemented the enter key
+Took a while to debug the enter key function and get it to work within the main.c file.
+Also started planning video presentation.
