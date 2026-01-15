@@ -45,43 +45,63 @@ int start(char * buff, int size){
 int movecursor(int x, int y, char ** lines, int maxy, int ch){
   if (ch == KEY_UP){
     if (y > 0){
-      if (strlen(lines[y - 1]) == 1){
+      if (strlen(lines[y - 1]) == 0){
+        move(y-1, 0);
+        refresh();
+      }
+      else if (strlen(lines[y - 1]) == 1){
         if (2 > x){
           move(y - 1, x);
+          refresh();
         }
       }
       else if(strlen(lines[y - 1]) > x){
         move(y - 1, x);
+        refresh();
       }
+
     }
+    return 1;
   }else if (ch == KEY_DOWN){
     if (y < maxy - 1){
-      if (strlen(lines[y + 1]) == 1){
+      if (strlen(lines[y + 1]) == 0){
+        move(y+1,0);
+        refresh();
+      }else if (strlen(lines[y + 1]) == 1){
         if(strlen(lines[y + 1]) + 1> x){
           move(y + 1, x);
+          refresh();
         }
       }
       else if (y < maxy - 1){
         if(strlen(lines[y + 1]) > x){
           move(y + 1, x);
+          refresh();
         }
       }
+
     }
+    return 1;
   }else if (ch == KEY_RIGHT){
     if (strlen(lines[y]) == 1){
       if (x < strlen(lines[y])){
         move(y, x + 1);
+        refresh();
       }
     }
     else if (x < strlen(lines[y]) - 1){
       move(y, x + 1);
+      refresh();
     }
+    return 1;
   }else if (ch == KEY_LEFT){
     if(x > 0){
       move(y, x - 1);
+      refresh();
     }
+    return 1;
   }
-  refresh();
+  return 0;
 }
 
 int quit(char * buff, int size, int fd, char * filename){
@@ -250,6 +270,7 @@ int process(char * filename){
 
 
   initscr();
+  newwin(256, 256, 0, 0);
   raw();
   noecho();
   start(buff, statbuff->st_size);
@@ -269,12 +290,7 @@ int process(char * filename){
     int maxx = 0;
     int maxy = 0;
     getmaxyx(stdscr, maxx, maxy);
-    if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == ' ' || ch == '\t'){
-      lines[y] = insert(lines[y], x, ch);
-      newbuffsize++;
-      newbuff = getnewbuff(lines, size, newbuffsize);
-      start(newbuff, newbuffsize);
-      move(y, x + 1);
+    if(movecursor(x,y,lines,size,ch)){
     }else if (ch == KEY_BACKSPACE){
       if (x > 0){
         lines[y] = deletech(lines[y], x - 1);
@@ -298,8 +314,13 @@ int process(char * filename){
       newbuffsize++;
       start(newbuff, newbuffsize);
       move(y + 1, 0);
+    }else{
+      lines[y] = insert(lines[y], x, ch);
+      newbuffsize++;
+      newbuff = getnewbuff(lines, size, newbuffsize);
+      start(newbuff, newbuffsize);
+      move(y, x + 1);
     }
-    movecursor(x,y,lines,size,ch);
   }
   endwin();
 }
