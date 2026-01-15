@@ -194,6 +194,21 @@ void parse_args(char * line, char  ** arg_ary){
   arg_ary[size - 1] = NULL;
 }
 
+char ** delete2(char ** lines, int y, int size){
+  char ** out = malloc(size * sizeof(char *));
+  for (int i = 0; i < size; i++){
+    if (i < y - 1){
+      out[i] = lines[i];
+    }else if (i == y - 1){
+      out[i] = lines[i];
+      strcat(out[i], lines[i + 1]);
+    }else if (i > y){
+      out[i - 1] = lines[i];
+    }
+  }
+  return out;
+}
+
 int process(char * filename){
   int openfile = open(filename, O_RDWR, 0666);
   if(openfile < 0){
@@ -267,6 +282,14 @@ int process(char * filename){
         newbuff = getnewbuff(lines, size, newbuffsize);
         start(newbuff, newbuffsize);
         move(y, x - 1);
+      }else if (x == 0 && y > 0){
+        int tempx = strlen(lines[y-1]) - 1;
+        lines = delete2(lines, y, size);
+        size--;
+        newbuff = getnewbuff(lines, size, newbuffsize);
+        newbuffsize--;
+        start(newbuff, newbuffsize);
+        move(y - 1, tempx);
       }
     }else if (ch == KEY_ENTER || ch == '\n' || ch == '\r'){
       lines = enterkey(lines, y, x, size);
