@@ -34,3 +34,7 @@ Next steps are to implement enter key, add some indicator if you saved or not, a
 Implemented the enter key
 Took a while to debug the enter key function and get it to work within the main.c file.
 Also started planning video presentation.
+
+### 2026-01-14
+Debugged minor issues with edge cases for both the deleting and moving cursor functions
+Focused time at home on video presentation.
