@@ -19,5 +19,6 @@ char * insert(char * line, int i, char ch);
 char * getnewbuff(char ** lines, int size, int buffsize);
 char * deletech(char * line, int i);
 char ** enterkey(char ** lines, int y, int x, int size);
+void parse_args(char * line, char  ** arg_ary);
 int process(char * filename);
 #endif

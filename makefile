@@ -2,7 +2,7 @@
 compile: main.o editor.o
 	@gcc -o runme main.o editor.o -lncurses
 run: runme
-	@./runme $(ARGS)
+	@./runme
 main.o: main.c editor.h
 	@gcc -c main.c
 editor.o: editor.c

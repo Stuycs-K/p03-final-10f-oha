@@ -182,6 +182,18 @@ char ** enterkey(char ** lines, int y, int x, int size){
   return out;
 }
 
+void parse_args(char * line, char  ** arg_ary){
+  char * token = calloc(1, sizeof(line) + 1);
+  int size = 1;
+  token = strsep(&line, " ");
+  while (token != NULL){
+    arg_ary[size - 1] = token;
+    token = strsep(&line, " ");
+    size++;
+  }
+  arg_ary[size - 1] = NULL;
+}
+
 int process(char * filename){
   int openfile = open(filename, O_RDWR, 0666);
   if(openfile < 0){
