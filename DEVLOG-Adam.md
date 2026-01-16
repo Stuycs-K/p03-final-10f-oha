@@ -38,3 +38,8 @@ Also started planning video presentation.
 ### 2026-01-14
 Debugged minor issues with edge cases for both the deleting and moving cursor functions
 Focused time at home on video presentation.
+
+### 2026-01-15
+
+Last minute debugging issues
+Finished project and video presentation
