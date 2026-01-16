@@ -26,8 +26,8 @@ It will use fork and exec to make use of user input.
 
 # Intended pacing:
 
-Day 1-2: basic opening and closing files and scrolling and moving cursor
+Day 1-2:c opening and closing files and scrolling and moving cursor
 Day 3-4: editing functions (deletion and inserting)
 Day 5: File saving
 
-Week 2: add more functions with signals, polish and debug
+sdfasdgasjgaioshWeek 2: add more functions with signals, polish and debug

@@ -26,7 +26,7 @@ When you are done, use ctrl + \ to quit and type y to confirm you quit.
 
 ### Video Presentation Link:
 
-
+https://youtu.be/EVaxUomW90Q 
 
 ### Resources/ References
 

@@ -292,7 +292,7 @@ int process(char * filename){
     getyx(stdscr, y, x);
     int maxx = 0;
     int maxy = 0;
-    getmaxyx(stdscr, maxx, maxy);
+    getmaxyx(stdscr, maxy, maxx);
     if(movecursor(x,y,lines,size,ch)){
     }else if (ch == KEY_BACKSPACE){
       if (x > 0){
