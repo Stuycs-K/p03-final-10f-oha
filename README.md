@@ -11,10 +11,12 @@ A simple, terminal based test editor. You will be able to select the file you op
 
 ### Instructions:
 
-Install ncurses: 
+Install ncurses:
     type in the following commands into your terminal:
         sudo apt update
         sudo apt install libncurses5-dev libncursesw5-dev
+
+TERMINAL MUST BE IN FULL SCREEN
 
 Enter "make run" into the terminal
 
@@ -26,8 +28,8 @@ When you are done, use ctrl + \ to quit and type y to confirm you quit.
 
 ### Video Presentation Link:
 
-https://youtu.be/EVaxUomW90Q 
+https://youtu.be/EVaxUomW90Q
 
 ### Resources/ References
 
-ncurses library commands: https://github.com/0xnmn/ncurses-cheatsheet/blob/master/cheatsheet.md 
+ncurses library commands: https://github.com/0xnmn/ncurses-cheatsheet/blob/master/cheatsheet.md
