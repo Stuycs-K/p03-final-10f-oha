@@ -16,9 +16,13 @@ The intended use of the program is to be able to edit text documents within the 
 
 It will allocate memory to store text buffers.
 
-It will work with files to open, edit, save and close the file you are editing.
+It will navigate allocated memory to move the cursor and add and remove characters.
 
-It will use signals to detect when a command is being used, something like ctrl + s to save or ctrl + q to quit, and will fork so that the child can execute a command prompted with a signal.
+It will work with files to open, edit, save and close the file you are editing, using read to open and write to save and close the file.
+
+It will use signals to detect when a command is being used, something like ctrl + s to save or ctrl + q to quit.
+
+It will use fork and exec to make use of user input.
 
 # Intended pacing:
 

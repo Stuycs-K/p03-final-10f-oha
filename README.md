@@ -7,13 +7,27 @@ Adam Oh
 
 ### Project Description:
 
-A simple, working file editor in the terminal. It will open files, allow you to edit it, then let's you save and close the file in a convenient way.
+A simple, terminal based test editor. You will be able to select the file you open, open the file, make your edits, and then save and close the file. If you don't save, it will save the file as it was before. When quitting, it will bring you to a confirmation page to double check that you want to quit.
 
 ### Instructions:
 
+Install ncurses: 
+    type in the following commands into your terminal:
+        sudo apt update
+        sudo apt install libncurses5-dev libncursesw5-dev
 
-Enter make run ARGS=[Insert file name] in the terminal
-Edit the file however you like
-Then, ctrl + \ to exit
+Enter "make run" into the terminal
+
+It will display a list of files in your current directory, type in the file you want to edit (find it works best with txt files).
+
+It will display the contents of the file. Make your edits and use ctrl + s to save your work.
+
+When you are done, use ctrl + \ to quit and type y to confirm you quit.
+
+### Video Presentation Link:
+
+
 
 ### Resources/ References
+
+ncurses library commands: https://github.com/0xnmn/ncurses-cheatsheet/blob/master/cheatsheet.md 

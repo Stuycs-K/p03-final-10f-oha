@@ -124,7 +124,7 @@ int quit(char * buff, int size, int fd, char * filename){
 }
 
 char * insert(char * line, int i, char ch){
-  char * s1 = malloc(strlen(line) + 2);
+  char * s1 = malloc(strlen(line) + 3);
   for (int k = 0; k < strlen(line) + 1; k++){
     if(k < i){
       s1[k] = line[k];
@@ -153,7 +153,7 @@ char * deletech(char * line, int i){
       s1[k] = line[k  + 1];
     }
   }
-  s1[strlen(line) + 1] = 0;
+  s1[strlen(line)] = 0;
   return s1;
 }
 
@@ -181,8 +181,8 @@ char ** enterkey(char ** lines, int y, int x, int size){
     if (i < y){
       out[i] = lines[i];
     }else if (i == y){
-      char * line1 = malloc(strlen(lines[i]));
-      char * line2 = malloc(strlen(lines[i]));
+      char * line1 = malloc(strlen(lines[i]) + 1);
+      char * line2 = malloc(strlen(lines[i]) + 1);
       for (int k = 0; k < strlen(lines[i]); k++){
         if(k < x){
           line1[k] = lines[i][k];
@@ -203,7 +203,7 @@ char ** enterkey(char ** lines, int y, int x, int size){
 }
 
 void parse_args(char * line, char  ** arg_ary){
-  char * token = calloc(1, sizeof(line) + 1);
+  char * token;
   int size = 1;
   token = strsep(&line, " ");
   while (token != NULL){
@@ -215,17 +215,21 @@ void parse_args(char * line, char  ** arg_ary){
 }
 
 char ** delete2(char ** lines, int y, int size){
-  char ** out = malloc(size * sizeof(char *));
+  char ** out = malloc(size  * sizeof(char *));
   for (int i = 0; i < size; i++){
     if (i < y - 1){
       out[i] = lines[i];
     }else if (i == y - 1){
-      out[i] = lines[i];
+      int len = strlen(lines[i]) + strlen(lines[i + 1]) + 1;
+      out[i] = malloc(len);
+      strcpy(out[i], lines[i]);
       strcat(out[i], lines[i + 1]);
     }else if (i > y){
       out[i - 1] = lines[i];
     }
   }
+
+  out[size - 1] = NULL;
   return out;
 }
 
@@ -255,7 +259,7 @@ int process(char * filename){
   token = strsep(&curr, "\n");
   while(token != NULL){
     lines = realloc(lines, size * sizeof(char*));
-    lines[size - 1] = token;
+    lines[size - 1] = strdup(token);
     token = strsep(&curr, "\n");
     size++;
   }
@@ -270,7 +274,6 @@ int process(char * filename){
 
 
   initscr();
-  newwin(256, 256, 0, 0);
   raw();
   noecho();
   start(buff, statbuff->st_size);
@@ -280,7 +283,7 @@ int process(char * filename){
     if(ch == 28){
       quit(buff, buffsize, openfile, filename);
     }else if (ch == 19){
-      buff = realloc(buff, newbuffsize);
+      buff = realloc(buff, newbuffsize + 1);
       buffsize = newbuffsize;
       strcpy(buff, newbuff);
     }
@@ -302,19 +305,19 @@ int process(char * filename){
         int tempx = strlen(lines[y-1]) - 1;
         lines = delete2(lines, y, size);
         size--;
-        newbuff = getnewbuff(lines, size, newbuffsize);
         newbuffsize--;
+        newbuff = getnewbuff(lines, size, newbuffsize);
         start(newbuff, newbuffsize);
         move(y - 1, tempx);
       }
     }else if (ch == KEY_ENTER || ch == '\n' || ch == '\r'){
       lines = enterkey(lines, y, x, size);
       size++;
-      newbuff = getnewbuff(lines, size, newbuffsize);
       newbuffsize++;
+      newbuff = getnewbuff(lines, size, newbuffsize);
       start(newbuff, newbuffsize);
       move(y + 1, 0);
-    }else{
+    }else if (ch >= 32 && ch <= 126){
       lines[y] = insert(lines[y], x, ch);
       newbuffsize++;
       newbuff = getnewbuff(lines, size, newbuffsize);
